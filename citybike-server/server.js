@@ -1,7 +1,7 @@
+const getApiAndEmit = require("./api/bikeApi.js")
 const express = require("express");
 const http = require("http");
 const socketIo = require("socket.io");
-const citybikeurl = "http://api.citybik.es/v2/networks/decobike-miami-beach"
 
 
 
@@ -19,9 +19,15 @@ let interval;
 io.on("connection", socket => {
   var socketId = socket.id;
   var clientIp = socket.request.connection.remoteAddress;
+
   console.log('New connection ' + socketId + ' from ' + clientIp);
+  if (interval) {
+    clearInterval(interval);
+  }
+  interval = setInterval(() => getApiAndEmit(socket), 300);
   socket.on("disconnect", () => {
     console.log("Client disconnected");
+    clearInterval(interval);
   });
 });
 

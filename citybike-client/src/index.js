@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import L from 'leaflet';
+import { dataConstants } from './constants';
+
+let DefaultIcon = dataConstants.divIconDefault;
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
