@@ -31,7 +31,7 @@ Then run the client app
 
 That is the client React Application to start :
 
-`npm strat`
+`yarn install && yarn strat`
 
 
 
